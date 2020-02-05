@@ -4,6 +4,7 @@ npm init --yes
 ### Install express
 npm install express
 
+
 ### To have autoupdate
 npm install -g nodemon
 res.send(req.params)
@@ -20,3 +21,7 @@ req.query = { sortBy: "name" }
 4oo error - Bad Request
 
 to test POST request we adding to body data we want to send and res.send new object
+
+### add Joi data validation
+npm inatall @hapi/joi
+
