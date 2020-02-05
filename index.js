@@ -78,7 +78,27 @@ function validateCourse(course) {
     })
     
     return schema.validate(course);
-}
+};
+
+app.delete('/api/courses/:id', (req, res) => {
+    //Look up the couse
+    //If not existing, return 404
+    const course = courses.find(c => c.id === parseInt(req.params.id));
+    if (!course) {
+        res.status(404).send(`The course with the ID ${req.params.id} was not found`);
+        return;
+    }
+    console.log('course', course)
+    //Delete
+    
+    const index = courses.indexOf(course);
+    console.log('index', index);
+    courses.splice(index, 1);
+
+    //Return the same course
+    res.send(course);
+
+});
 
 
 
