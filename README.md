@@ -17,5 +17,6 @@ req.query = { sortBy: "name" }
 
 #### 
 404 error - object not find
+4oo error - Bad Request
 
 to test POST request we adding to body data we want to send and res.send new object
