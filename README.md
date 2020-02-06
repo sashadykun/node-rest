@@ -1,4 +1,4 @@
-### Init new ptoject
+### Init new project
 `npm init --yes`
 
 ### Install express
@@ -40,4 +40,11 @@ middleware for static files
 console.log( `NODE_ENV: ${process.env.NODE_ENV}`);
 or 
 `app.get('env')` - by default it set to `'development'`
+
+### to set environment 
+on cli execute command `export NODE_ENV=development` or `export NODE_ENV=production`
+
+### to create custom environment variables list
+store it in `custom-environment-variables` where you make you the mapping of an environment variable
+
 
