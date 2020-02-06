@@ -24,16 +24,9 @@ app.get( '/api/courses/:year/:month', ( req, res ) => {
 
 app.post( '/api/courses', (req, res) =>{
     const { error } = validateCourse(req.body);
-    console.log ('result validation', error);
 
-    if (error) {
-        res.status(400).send(error.details[0].message);
-        return;
-    } 
-    // else if (req.body.name.length < 3 ) {
-    //     res.status(400).send('Name should be minimun 3 characters.');
-    //     return;
-    // } 
+    if (error) return res.status(400).send(error.details[0].message);
+
     const course = {
         id: courses.length + 1,
         name: req.body.name
@@ -44,7 +37,7 @@ app.post( '/api/courses', (req, res) =>{
 
 app.get( '/api/courses/:id', (req, res) => {
     const course = courses.find(c => c.id === parseInt(req.params.id));
-    if (!course) res.status(404).send(`The course with the ID ${req.params.id} was not found`)
+    if (!course) return res.status(404).send(`The course with the ID ${req.params.id} was not found`)
     res.send(course);
 });
 
@@ -52,17 +45,15 @@ app.put('/api/courses/:id', (req, res) => {
     //Look up the course
     //If not existing, return 404
     const course = courses.find(c => c.id === parseInt(req.params.id));
-    if (!course) res.status(404).send(`The course with the ID ${req.params.id} was not found`)
+    if (!course) return res.status(404).send(`The course with the ID ${req.params.id} was not found`)
     
 
     //Validate
     //Ifinvalid, return 400 -Bad request
     const { error } = validateCourse(req.body);
 
-    if (error) {
-        res.status(400).send(error.details[0].message);
-        return;
-    } 
+    if (error) return res.status(400).send(error.details[0].message);
+
 
     //Update couse
     course.name = req.body.name;
@@ -84,15 +75,12 @@ app.delete('/api/courses/:id', (req, res) => {
     //Look up the couse
     //If not existing, return 404
     const course = courses.find(c => c.id === parseInt(req.params.id));
-    if (!course) {
-        res.status(404).send(`The course with the ID ${req.params.id} was not found`);
-        return;
-    }
-    console.log('course', course)
+    if (!course) return res.status(404).send(`The course with the ID ${req.params.id} was not found`);
+      
     //Delete
     
     const index = courses.indexOf(course);
-    console.log('index', index);
+   
     courses.splice(index, 1);
 
     //Return the same course
@@ -104,7 +92,3 @@ app.delete('/api/courses/:id', (req, res) => {
 
 const port = process.env.PORT || 4000;
 app.listen( port, () => console.log(`Listening on port ${port}... `) )
-
-// app.post();
-// app.put();
-// app.delete();
