@@ -56,3 +56,12 @@ we can set environment variables with `DEBUG` key word = `'spase:to:debug'` or w
 and we can set envirenment variable at start point of server
 as 
 `DEBUG=app* nodemon index.js`
+
+### templating engines - generates dynamic HTML and returning to the client
+- Pug
+- Mustache
+- EJS
+
+`npm install pug`
+to use it `app.set('view engine', 'pug');`
+and set route to templates `app.set('views', './views');` will be set by default
