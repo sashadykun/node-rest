@@ -9,6 +9,9 @@ const authenticate = require('./authenticate')
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'pug');
+// app.set('views', './views'):
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); //can add key: value in req.body
 app.use(express.static('public')); // argument 'bublic' is folder name to serve it just call file name in browser
@@ -17,7 +20,7 @@ app.use(helmet());
 //Configuration 'config' 
 console.log('Application Name: ' + config.get('name'));
 console.log('Application Name: ' + config.get('mail.host'));
-console.log('Application Password ' + config.get('mail.password'));
+// console.log('Application Password ' + config.get('mail.password'));
 
 if (app.get('env') === 'development') { //to use morgan logger only in development 
     app.use(morgan('tiny'));
@@ -36,7 +39,7 @@ const courses = [
 ]
 
 app.get('/', (req, res) => {
-    res.send('hello world')
+    res.render('index', {title: 'API express app', message: 'connected'})
 });
 
 app.get('/api/courses', (req, res) => {
