@@ -1,3 +1,4 @@
+const debug = require('debug')('app:startup'); // use for debugging with console logs
 const config = require('config'); // to use config file with environmens
 const morgan = require('morgan'); // to log HTTP reqeusts
 const helmet = require('helmet'); // help secure apps by setting various HTTP headers.
@@ -20,7 +21,7 @@ console.log('Application Password ' + config.get('mail.password'));
 
 if (app.get('env') === 'development') { //to use morgan logger only in development 
     app.use(morgan('tiny'));
-    console.log('morgan enabled...')
+    debug('morgan enabled...')
 }
  
 

@@ -48,3 +48,11 @@ on cli execute command `export NODE_ENV=development` or `export NODE_ENV=product
 store it in `custom-environment-variables` where you make you the mapping of an environment variable
 
 
+### to get debugging messages on console
+`npm install debug`
+debug usage 
+`const debug = require('debug')('spase:to:debug')`
+we can set environment variables with `DEBUG` key word = `'spase:to:debug'` or wildcard `*` or different namespacess with coma `,`
+and we can set envirenment variable at start point of server
+as 
+`DEBUG=app* nodemon index.js`
