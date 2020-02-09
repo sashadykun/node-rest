@@ -17,8 +17,8 @@ for example http://localhost:3000/:year/:month
 `req.query = { sortBy: "name" }`
 
 #### 
-404 error - object not find
-4oo error - Bad Request
+404 error - object not found
+400 error - Bad Request
 
 to test POST request we adding to body data we want to send and res.send new object
 
@@ -52,8 +52,8 @@ store it in `custom-environment-variables` where you make you the mapping of an 
 `npm install debug`
 debug usage 
 `const debug = require('debug')('spase:to:debug')`
-we can set environment variables with `DEBUG` key word = `'spase:to:debug'` or wildcard `*` or different namespacess with coma `,`
-and we can set envirenment variable at start point of server
+we can set environment variables with `DEBUG` key word = `'spase:to:debug'` or wildcard `*` or different namespaces with comma `,`
+and we can set environment variable at start point of server
 as 
 `DEBUG=app* nodemon index.js`
 
