@@ -2,8 +2,9 @@ const debug = require('debug')('app:startup'); // use for debugging with console
 const config = require('config'); // to use config file with environmens
 const morgan = require('morgan'); // to log HTTP reqeusts
 const helmet = require('helmet'); // help secure apps by setting various HTTP headers.
-const logger = require('./logger');
+const logger = require('./middleware/logger');
 const courses = require('./routes/courses');
+const home = require('./routes/home');
 const bodyParser = require('body-parser')
 const authenticate = require('./authenticate')
 const express = require('express');
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false })); //can add key: value in req
 app.use(express.static('public')); // argument 'bublic' is folder name to serve it just call file name in browser
 app.use(helmet());
 app.use('/api/courses', courses); //with any routes /api/courses use courses routes
+app.use('/', home);
 
 //Configuration 'config' 
 console.log('Application Name: ' + config.get('name'));
@@ -31,9 +33,6 @@ if (app.get('env') === 'development') { //to use morgan logger only in developme
 app.use(logger);
 app.use(authenticate);
 
-app.get('/', (req, res) => {
-    res.render('index', {title: 'API express app', message: 'connected'})
-});
 
 const port = process.env.PORT || 4000;
 app.listen( port, () => console.log(`Listening on port ${port}... `) )
